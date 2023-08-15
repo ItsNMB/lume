@@ -1,4 +1,4 @@
-# lume v3.3.1
+# lume v3.4.2
 
 ### Added:
     - lume.mapvalue() with inspiration from processing
@@ -13,6 +13,7 @@
 
 ### Changed:
     - lume.smooth() to lume.slerp() cause it's easier to switch between lerp and slerp
+    - lume.count() to not use #t
 
 ### Removed:
     - lume.vector()
