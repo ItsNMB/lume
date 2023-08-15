@@ -80,6 +80,9 @@ lume.any({1, 2, 1}, function(x) return x == 1 end) -- Returns true
 ### lume.isarray(x)
 > Returns `true` if `x` is an array -- the value is assumed to be an array if it is a table which contains a value at the index `1`.
 
+### lume.checksize(t)
+> Compares `#t` with `lume.count(t)` and returns `true, #t` if they are equal and `false, lume.count(t), #t` if not.
+
 ---
 ## *Addition / Removal*
 

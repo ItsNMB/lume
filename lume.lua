@@ -36,6 +36,7 @@
     - lume.deepclone()
     - lume.pop()
     - lume.removeall() and lume.removeswap()
+    - lume.checksize()
 
     Changed:
     - lume.smooth() to lume.slerp() cause it's easier to switch between lerp and slerp
@@ -45,7 +46,7 @@
 
 ]]
 
-local lume = {_version = "3.2.1"}
+local lume = {_version = "3.3.1"}
 
 local pairs, ipairs = pairs, ipairs
 local type, assert, unpack = type, assert, table.unpack
@@ -142,9 +143,7 @@ function lume.slerp(a, b, amount)
 end
 
 function lume.distance(x1, y1, x2, y2, squared)
-    local dx = x1 - x2
-    local dy = y1 - y2
-    local s = dx^2 + dy^2
+    local s = (x1-x2)^2 + (y1-y2)^2
     return squared and s or math_sqrt(s)
 end
 
@@ -194,6 +193,16 @@ end
 
 function lume.isarray(x)
     return type(x) == "table" and x[1] ~= nil and x[#x] ~= nil
+end
+
+function lume.checksize(t)
+    local len = #t
+    local truesize = lume.count(t)
+    if len ~= truesize then
+        return false, truesize, len
+    else
+        return true, len
+    end
 end
 
 function lume.push(t, ...)
@@ -474,9 +483,9 @@ function lume.count(t, fn)
             end
         end
     else
-        if lume.isarray(t) then
-            return #t
-        end
+        -- if lume.isarray(t) then
+        --     return #t
+        -- end
         for _ in iter(t) do
             count = count + 1
         end

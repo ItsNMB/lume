@@ -1,15 +1,22 @@
-lume v3.1.0
+# lume v3.3.1
 
-Added:
-- lume.mapvalue() with inspiration from processing
-- lume.random() fix by idbrii (David Briscoe)
-- lume.approx() from pull request
-- lume.highest() and lume.lowest()
-- lume.deepclone()
-- lume.removeall() and lume.removeswap()
+### Added:
+    - lume.mapvalue() with inspiration from processing
+    - lume.rerange() as better version of mapvalue
+    - lume.random() fix by idbrii (David Briscoe)
+    - lume.approx() from pull request
+    - lume.max() and lume.min()
+    - lume.deepclone() from Issue
+    - lume.pop()
+    - lume.removeall() and lume.removeswap()
+    - lume.checksize()
 
-Changed:
-- lume.smooth() to lume.slerp() cause it's easier to switch between lerp and slerp
+### Changed:
+    - lume.smooth() to lume.slerp() cause it's easier to switch between lerp and slerp
 
-Removed:
-- lume.vector()
+### Removed:
+    - lume.vector()
+
+### Fixed:
+    - pass keys to lume.map() callback
+    - lume.format() to handle false values
