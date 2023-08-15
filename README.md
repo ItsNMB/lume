@@ -263,10 +263,10 @@ lume.first({'a', 'b', 'c'}) -- Returns 'a'
 lume.last({'a', 'b', 'c'}) -- Returns 'c'
 ```
 
-### lume.highest(t)
+### lume.max(t)
 > Returns the **highest** value of an array or nil if the array is empty.
 
-### lume.lowest(t)
+### lume.min(t)
 > Returns the **lowest** value of an array or nil if the array is empty.
 
 ### lume.keys(t)
