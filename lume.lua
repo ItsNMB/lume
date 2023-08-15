@@ -21,7 +21,7 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 --
--- I hope just leaving this here is enough. Don't sue me, thanks.
+-- Noah: I hope just leaving this here is enough. Don't sue me, thanks.
 
 --[[
 
@@ -113,8 +113,8 @@ end
 -- math functions
 
 function lume.rerange(v, a, b, c, d)
+    if a == b then return c end
     local result = c + (d - c) * ((v - a) / (b - a))
-    if result == (0/0) or type(result) ~= 'number' then result = 0 end
     result = result < c and c or (result > d and d or result)
     return result
 end

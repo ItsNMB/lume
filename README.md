@@ -11,8 +11,13 @@
 
 # Math
 
+### lume.rerange(value, low1, high1, low2, high2)
+> Returns the number `value` in its new range.
+
 ### lume.mapvalue(value, start1, stop1, start2, stop2)
 > Returns the number `value` in its new range.
+> This function doesn't clamp the value to the new range so it can be used to extrapolate values.
+> It also doesn't catch a division by zero error so make sure that `start1` and `stop1` are not the same value.
 
 ### lume.approx(a, b, precision)
 > Compares whether two values are within a range. Useful for fuzzy comparisons: whether values are approximately equal.
