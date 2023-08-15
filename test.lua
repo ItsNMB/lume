@@ -2,4 +2,5 @@ local lume = require "lume"
 
 print'format() test'
 
-assert(lume.format("hello ", "world") == "hello world")
+print(lume.format("{1} is {2} and {f}", {true, false, f=false}))
+assert(lume.format("{1} is {2} and {f}", {true, false, f=false}) == "true is false and false")
