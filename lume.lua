@@ -724,13 +724,23 @@ function lume.format(str, vars)
     local f = function(x)
         local index = tonumber(x)
         if index then
-            return tostring(vars[index] or "{" .. index .. "}")
+            return tostring(vars[index])
         else
-            return tostring(vars[x] or "{" .. x .. "}")
+            return tostring(vars[x])
         end
     end
     return (str:gsub("{(.-)}", f))
 end
+
+-- function lume.format(str, vars)
+--     if not vars then
+--         return str
+--     end
+--     local f = function(x)
+--         return tostring(vars[x] or vars[tonumber(x)])
+--     end
+--     return (str:gsub("{(.-)}", f))
+-- end
 
 
 local serialize
