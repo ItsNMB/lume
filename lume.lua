@@ -732,16 +732,6 @@ function lume.format(str, vars)
     return (str:gsub("{(.-)}", f))
 end
 
--- function lume.format(str, vars)
---     if not vars then
---         return str
---     end
---     local f = function(x)
---         return tostring(vars[x] or vars[tonumber(x)])
---     end
---     return (str:gsub("{(.-)}", f))
--- end
-
 
 local serialize
 
