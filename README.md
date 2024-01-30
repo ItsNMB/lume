@@ -264,19 +264,19 @@ lume.last({'a', 'b', 'c'}) -- Returns 'c'
 ```
 
 ### lume.max(t)
-> Returns the **highest** value of an array or nil if the array is empty.
+> Returns the *highest* value of an array or `nil` if the array is empty.
 
 ### lume.min(t)
-> Returns the **lowest** value of an array or nil if the array is empty.
+> Returns the *lowest* value of an array or `nil` if the array is empty.
 
 ### lume.keys(t)
 > Returns an array containing each key of the table.
 
 ### lume.clone(t)
-> Returns a **shallow** copy of the table `t`.
+> Returns a *shallow* copy of the table `t`.
 
 ### lume.deepclone(t)
-> Returns a **deep** copy of the table `t`.
+> Returns a *deep* copy of the table `t`.
 
 ### lume.slice(t [, i [, j]])
 > Mimics the behaviour of Lua's `string.sub`, but operates on an array rather than a string. Creates and returns a new array of the given slice.
