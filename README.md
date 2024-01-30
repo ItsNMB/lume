@@ -24,7 +24,7 @@
 ```lua
 lume.approximately(2.34567, 2.3, 0.001) -- Returns false
 lume.approximately(2.34567, 2.3, 0.1) -- Returns true
-lume.approximately(0, .1, 0.001) -- Returns false
+lume.approximately(0, 0.1, 0.001) -- Returns false
 ```
 
 ### lume.clamp(x, min, max)
@@ -33,7 +33,7 @@ lume.approximately(0, .1, 0.001) -- Returns false
 ### lume.lerp(a, b, amount)
 >Returns the linearly interpolated number between `a` and `b`, `amount` should be in the range of 0 - 1; if `amount` is outside of this range it is clamped.
 ```lua
-lume.lerp(100, 200, .5) -- Returns 150
+lume.lerp(100, 200, 0.5) -- Returns 150
 ```
 
 ### lume.slerp(a, b, amount)
@@ -43,15 +43,12 @@ lume.lerp(100, 200, .5) -- Returns 150
 > Returns the distance between the two points. If `squared` is true then the squared distance is returned.  
 > This is faster to calculate and can still be used when comparing distances.
 
-### lume.pingpong(x)
-> Ping-pongs the number `x` between 0 and 1.
-
 ### lume.round(x [, increment])
 > Rounds `x` to the nearest integer; rounds away from zero if we're midway between two integers.  
 > If `increment` is set then the number is rounded to the nearest increment.
 ```lua
 lume.round(2.3) -- Returns 2
-lume.round(123.4567, .1) -- Returns 123.5
+lume.round(123.4567, 0.1) -- Returns 123.5
 ```
 
 ### lume.sign(x)
@@ -109,7 +106,7 @@ lume.remove(t, 2) -- `t` becomes { 1, 3 }
 ```
 
 ### lume.removeall(t, should_remove_fn)
-> Stable remove from list-like table.  
+> Stable remove from list-like table.
 > Fast for removing many elements. Doesn't change order of elements.
 [See reference](https://stackoverflow.com/questions/12394841/safely-remove-items-from-an-array-table-while-iterating/53038524#53038524).
 ```lua
@@ -249,6 +246,12 @@ lume.count({a = 2, b = 3, c = 4, d = 5}) -- Returns 4
 lume.count({1, 2, 4, 6}, function(x) return x % 2 == 0 end) -- Returns 3
 ```
 
+### lume.depth(t)
+> Returns the depth of `t`
+```lua
+lume.depth({{{{a=1}}}}) -- Returns 4
+```
+
 ### lume.first(t [, n])
 > Returns the **first** element of an array or nil if the array is empty.  
 > If `n` is specificed an array of the first `n` elements is returned.
@@ -333,13 +336,13 @@ f() -- Does nothing
 > Takes a string lambda and returns a function.  
 > `str` should be a list of comma-separated parameters, followed by `->`, followed by the expression which will be evaluated and returned.
 ```lua
-local f = lume.lambda 'x,y -> 2*x+y'
+local f = lume.lambda'x,y -> 2*x+y' -- or lume.l'x,y -> @*x*y'
 f(10, 5) -- Returns 25
 ```
 
 ### lume.combine(...)
-> Creates a wrapper function which calls each supplied argument in the order they were passed in.  
-> `nil` arguments are ignored.  
+> Creates a wrapper function which calls each supplied argument in the order they were passed in.
+> `nil` arguments are ignore.
 > The wrapper function passes its own arguments to each of its wrapped functions when it is called.
 ```lua
 local f = lume.combine(
@@ -350,14 +353,14 @@ f(3, 4) -- Prints '7' then '12' on a new line
 ```
 
 ### lume.call(fn, ...)
-> Calls the given function with the provided arguments and returns its values.  
+> Calls the given function with the provided arguments and returns its values.
 > If `fn` is `nil` then no action is performed and the function returns `nil`.
 ```lua
 lume.call(print, 'Hello world') -- Prints 'Hello world'
 ```
 
 ### lume.fn(fn, ...)
-> Creates a wrapper function around function `fn`, automatically inserting the arguments into `fn` which will persist every time the wrapper is called.  
+> Creates a wrapper function around function `fn`, automatically inserting the arguments into `fn` which will persist every time the wrapper is called.
 > Any arguments which are passed to the returned function will be inserted after the already existing arguments passed to `fn`.
 ```lua
 local f = lume.fn(print, 'Hello')
@@ -369,7 +372,7 @@ f('world') -- Prints 'Hello world'
 # Strings
 
 ### lume.split(str [, sep])
-> Returns an array of the words in the string `str`.  
+> Returns an array of the words in the string `str`.
 > If `sep` is provided it is used as the delimiter, consecutive delimiters are not grouped together and will delimit empty strings.
 ```lua
 lume.split('One two three') -- Returns {'One', 'two', 'three'}
@@ -381,20 +384,6 @@ lume.split('a,b,,c', ',') -- Returns {'a', 'b', '', 'c'}
 ```lua
 lume.format('{b} hi {a}', {a = 'mark', b = 'Oh'}) -- Returns 'Oh hi mark'
 lume.format('Hello {1}!', {'world'}) -- Returns 'Hello world!'
-```
-
-### lume.serialize(x)
-> Serializes the argument `x` into a string which can be loaded again using `lume.deserialize()`. Only booleans, numbers, tables and strings can be serialized.  
-> !!! Circular references will result in an error, all nested tables are serialized as unique tables.
-```lua
-lume.serialize({a = 'test', b = {1, 2, 3}, false})
--- Returns '{[1]=false,['a']='test',['b']={[1]=1,[2]=2,[3]=3,},}'
-```
-
-### lume.deserialize(str)
-> Deserializes a string created by `lume.serialize()` and returns the resulting value.
-```lua
-lume.deserialize('{1, 2, 3}') -- Returns {1, 2, 3}
 ```
 
 ### lume.trim(str [, chars])
@@ -438,7 +427,7 @@ lume.dostring('print("Hello!")') -- Prints 'Hello!'
 ```
 
 ### lume.hotswap(modname)
-> Reloads an already loaded module in place, allowing you to immediately see the effects of code changes without having to restart the program.  
+> Reloads an already loaded module in place, allowing you to immediately see the effects of code changes without having to restart the program.
 > `modname` should be the same string used when loading the module with require().  
 > In the case of an error the global environment is restored and `nil` plus an error message is returned.
 ```lua
