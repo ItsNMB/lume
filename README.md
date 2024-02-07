@@ -1,4 +1,4 @@
-# Lume - Version 3.4.2
+# Lume - Version 3.5.0
 
 # Sections:
 - [Math](#math)
